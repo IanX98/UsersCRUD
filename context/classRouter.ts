@@ -22,4 +22,6 @@ router.get('/edit-class/:id', classController.goToEditClassPage);
 
 router.post('/edit-class/:id', classController.editClass);
 
+router.get('/class-students/:id', classController.getClassStudents);
+
 module.exports = router

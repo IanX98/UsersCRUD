@@ -47,16 +47,16 @@ exports.getUserComments = async (req: any, res: any, next: any) => {
 exports.getSelectedComment = async (req: any, res: any, next: any) => {
     console.log('GET SELECTED USER');
     const userId = req.params.id;
-    // await User.findByPk(userId)
-    // .then((rows: any) => {
-    //     res.render('selectedUser', {
-    //         user: rows,
-    //     });
-    // })
-    // .catch((err: any) => {
-    //     console.error(err);
-    //     res.status(500).send(`Error while getting user ${userId}.`);
-    // });
+    await UserComment.findByPk(userId)
+    .then((rows: any) => {
+        res.render('selectedUser', {
+            user: rows,
+        });
+    })
+    .catch((err: any) => {
+        console.error(err);
+        res.status(500).send(`Error while getting user ${userId}.`);
+    });
 };
 
 exports.deleteComment = async (req: any, res: any, next: any) => {

@@ -3,7 +3,7 @@ const ClassRoom = require('../models/class');
 
 exports.goToHomePage = (req: any, res: any, next: any) => {
     console.log('HOME PAGE');
-    res.render('homeClass');
+    res.render('home');
 };
 
 exports.addClass = (req: any, res: any, next: any) => {
@@ -23,7 +23,7 @@ exports.addClass = (req: any, res: any, next: any) => {
         res.redirect('/classes');
     })
     .catch((err: any) => {
-        console.log(err);""
+        console.log(err);
         res.status(500).send(`Error while adding class ${name}.`);
     })
 };
@@ -112,4 +112,19 @@ exports.editClass = async (req: any, res: any, next: any) => {
         console.error(err);
         res.status(500).send(`Error while editing class ${classId} in Controller.`);
     }
+};
+
+exports.getClassStudents = async (req: any, res: any, next: any) => {
+    console.log('GET SELECTED CLASS STUDENTS');
+    const classId = req.params.id;
+    await ClassRoom.findByPk(classId)
+    .then((rows: any) => {
+        res.render('selectedClass', {
+            selectedClass: rows,
+        });
+    })
+    .catch((err: any) => {
+        console.error(err);
+        res.status(500).send(`Error while getting class ${classId}.`);
+    });
 };

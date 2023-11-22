@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 const sequelize = require('../db/database');
+const Class = require('../models/class');
 
 const User = sequelize.define('user', {
     id: {
@@ -25,5 +26,8 @@ const User = sequelize.define('user', {
         allowNUll: false
     },
 });
+
+User.belongsTo(Class);
+
 
 module.exports = User;
