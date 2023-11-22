@@ -34,10 +34,10 @@ exports.goToAddClassPage = (req: any, res: any, next: any) => {
 };
 
 exports.goToEditClassPage = (req: any, res: any, next: any) => {
-    console.log('Edit user GET');
-    const userId = req.params.id;
+    console.log('Edit class GET');
+    const classId = req.params.id;
     res.render('edit-class', {
-        userId: userId
+        classId: classId
     });
 };
 
@@ -87,29 +87,29 @@ exports.deleteClass = async (req: any, res: any, next: any) => {
     }
 };
 
-// exports.editClass = async (req: any, res: any, next: any) => {
-//     console.log('EDIT Class');
-//     const classId = req.params.id;
-//     const updatedName = req.body.first_name;
-//     const updatedYear = req.body.last_name;
-//     const updatedInstitution = req.body.age;
+exports.editClass = async (req: any, res: any, next: any) => {
+    console.log('EDIT Class');
+    const classId = req.params.id;
+    console.log(req.body)
+    const updatedName = req.body.class_name;
+    const updatedYear = req.body.class_year;
+    const updatedInstitution = req.body.class_institution;
 
-//     try {
-//         await Class.findByPk(classId)
-//         .then((class: any) => {
-//             console.log(class)
-//             class.name = updatedFirstname,
-//             class.year = updatedLastname,
-//             class.institution = updatedAge
+    try {
+        await ClassRoom.findByPk(classId)
+        .then((selectedClass: any) => {
+            selectedClass.name = updatedName,
+            selectedClass.year = updatedYear,
+            selectedClass.institution = updatedInstitution
 
-//             return class.save();
-//         })
-//         .then((result: any) => {
-//             console.log('UPDATED CLASS');
-//             res.redirect('/classes');
-//         })
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send(`Error while editing user ${classId} in Controller.`);
-//     }
-// };
+            return selectedClass.save();
+        })
+        .then((result: any) => {
+            console.log('UPDATED CLASS');
+            res.redirect('/classes');
+        })
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(`Error while editing class ${classId} in Controller.`);
+    }
+};

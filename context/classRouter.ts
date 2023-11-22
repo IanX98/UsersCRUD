@@ -14,12 +14,12 @@ router.post('/add-class', classController.addClass);
 
 router.get('/classes', classController.getClasses);
 
-// router.get('/class/:id', classController.getSelectedClass);
+router.get('/class/:id', classController.getSelectedClass);
 
-// router.post('/delete-class/:id', classController.deleteClass);
+router.post('/delete-class/:id', classController.deleteClass);
 
-// router.get('/edit-class/:id', classController.goToEditClassPage);
+router.get('/edit-class/:id', classController.goToEditClassPage);
 
-// router.post('/edit-class/:id', classController.editClass);
+router.post('/edit-class/:id', classController.editClass);
 
 module.exports = router
