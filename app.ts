@@ -12,7 +12,8 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const authRoutes = require('./context/authRouter');
+// const authRoutes = require('./context/authRouter');
+const classRoutes = require('./context/classRouter');
 const userRoutes = require('./context/userRouter');
 const commentRoutes = require('./context/commentRouter');
 
@@ -20,7 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(authRoutes);
+// app.use(authRoutes);
+app.use(classRoutes);
 app.use(userRoutes);
 app.use(commentRoutes);
 

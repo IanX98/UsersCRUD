@@ -6,7 +6,7 @@ const path = require('path');
 
 const userController = require('../controllers/user.controller');
 
-router.get('/', userController.goToHomePage);
+// router.get('/', userController.goToHomePage);
 
 router.get('/add-user', userController.goToAddUserPage);
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Class</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Class Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form class="product-form" action="/add-class" method="POST">
+            <div class="form-control">
+                <label for="class_name">Name</label>
+                <input type="text" name="class_name" id="class_name">
+            </div>
+
+            <div class="form-control">
+                <label for="class_year">Year</label>
+                <input type="number" name="class_year" id="class_year">
+            </div>
+
+            <div class="form-control">
+                <label for="class_institution">Institution</label>
+                <input type="text" name="class_institution" id="class_institution">
+            </div>
+
+            <br>
+
+            <button type="submit">Add Class</button>
+        </form>
+    </main>
+</body>
+
+</html>
