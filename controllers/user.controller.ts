@@ -1,5 +1,6 @@
 const path = require('path');
 const User = require('../models/user');
+const Class = require('../models/class');
 
 exports.goToHomePage = (req: any, res: any, next: any) => {
     console.log('HOME PAGE');
@@ -44,15 +45,18 @@ exports.goToEditUserPage = (req: any, res: any, next: any) => {
 
 exports.getUsers = async (req: any, res: any, next: any) => {
     console.log('GET USERS');
-    await User.findAll()
+    const classId = req.params.id;
+
+    await Class.findByPk(classId)
     .then((rows: any) => {
+        console.log(rows)
         res.render('users', {
-            users: rows,
+            students: rows,
         });
     })
     .catch((err: any) => {
         console.error(err);
-        res.status(500).send('Error while getting users.');
+        res.status(500).send(`Error while getting class ${classId}.`);
     });
 };
 

@@ -117,14 +117,11 @@ exports.editClass = async (req: any, res: any, next: any) => {
 exports.getClassStudents = async (req: any, res: any, next: any) => {
     console.log('GET SELECTED CLASS STUDENTS');
     const classId = req.params.id;
-    await ClassRoom.findByPk(classId)
-    .then((rows: any) => {
-        res.render('selectedClass', {
-            selectedClass: rows,
-        });
-    })
-    .catch((err: any) => {
-        console.error(err);
-        res.status(500).send(`Error while getting class ${classId}.`);
-    });
+    console.log(classId)
+
+    try {
+        res.redirect(`/users/${classId}`);
+    } catch (error: any) {
+        res.status(500).send(`Error while getting class ${classId} students in Controller.`);
+    }
 };
