@@ -27,7 +27,4 @@ const User = sequelize.define('user', {
     },
 });
 
-User.belongsTo(Class);
-
-
 module.exports = User;

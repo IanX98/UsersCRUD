@@ -7,6 +7,10 @@ const errorController = require('./controllers/error.controller');
 const sequelize = require('./db/database');
 const mongoConnect = require('./db/mongoDB').mongoConnect;
 
+const User = require('./models/user');
+const Class = require('./models/class');
+
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -33,8 +37,11 @@ app.use((err: any, req: any, res: { status: (arg0: number) => { (): any; new(): 
 
 const PORT = 3000;
 
+User.belongsTo(Class, {constaints: true, onDelete: 'CASCADE'});
+Class.hasMany(User);
+
 try {
-  Promise.all([sequelize.sync(), mongoConnect((client: any) => {
+  Promise.all([sequelize.sync({ force: true}), mongoConnect((client: any) => {
     console.log('MongoDB connection established');
   })])
 } catch (err) {
