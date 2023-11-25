@@ -6,9 +6,9 @@ const path = require('path');
 
 const commentController = require('../controllers/comment.controller');
 
-router.get('/create-comment/:id', commentController.goToCreateComment);
+router.get('/create-comment/:classId/:id', commentController.goToCreateComment);
 
-router.post('/create-comment/:id', commentController.addComment);
+router.post('/create-comment/:classId/:id', commentController.addComment);
 
 router.get('/user-comments/:id', commentController.getUserComments);
 

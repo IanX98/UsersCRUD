@@ -4,8 +4,11 @@ const UserComment = require('../models/comment');
 exports.goToCreateComment = (req: any, res: any, next: any) => {
     console.log('CREATE USER COMMENT');
     const userId = req.params.id;
+    const classId = req.params.classId;
+
     res.render('add-comment', {
         userId: userId,
+        classId: classId
     });
 };
 
@@ -21,7 +24,7 @@ exports.addComment = (req: any, res: any, next: any) => {
     .save()
     .then((result: any) => {
         console.log('COMMENT CREATED SUCCESSFULLY');
-        res.redirect(`/user/${userId}`)
+        res.redirect(`/user-comments/${userId}`)
     })
     .catch((err: any) => {
         console.log(`ERROR WHILE CREATING COMMENT ${err}`)
