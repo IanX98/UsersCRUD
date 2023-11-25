@@ -16,8 +16,8 @@ router.get('/student/:classId/:id', studentController.getSelectedStudent);
 
 router.post('/delete-student/:classId/:id', studentController.deleteStudent);
 
-router.get('/edit-user/:id', studentController.goToEditUserPage);
+router.get('/edit-student/:classId/:id', studentController.goToEditStudentPage);
 
-router.post('/edit-user/:id', studentController.editUser);
+router.post('/edit-student/:classId/:id', studentController.editUser);
 
 module.exports = router

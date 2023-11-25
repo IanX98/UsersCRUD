@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User</title>
+    <title>Edit Student</title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 
@@ -13,15 +13,15 @@
     <header class="main-header">
         <nav class="main-header__nav">
             <ul class="main-header__item-list">
-                <li class="main-header__item"><a href="/">User Home</a></li>
+                <li class="main-header__item"><a href="/">Home</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Edit User <%= userId %></h1>
+        <h1>Edit Student <%= studentId %></h1>
 
-        <form class="product-form" action="/edit-user/<%= userId %>" method="POST">
+        <form class="product-form" action="/edit-student/<%= classId %>/<%= studentId %>" method="POST">
             <div class="form-control">
                 <label for="user_name">Age</label>
                 <input type="number" name="age" id="age">
@@ -44,7 +44,7 @@
 
             <br>
 
-            <button type="submit">Edit User</button>
+            <button type="submit">Edit Student</button>
         </form>
     </main>
 </body>

@@ -40,11 +40,14 @@ exports.goToAddStudentPage = (req: any, res: any, next: any) => {
     });
 };
 
-exports.goToEditUserPage = (req: any, res: any, next: any) => {
-    console.log('Edit user GET');
-    const userId = req.params.id;
-    res.render('edit-user', {
-        userId: userId
+exports.goToEditStudentPage = (req: any, res: any, next: any) => {
+    console.log('Edit student GET');
+    const studentId = req.params.id;
+    const classId = req.params.classId;
+
+    res.render('edit-student', {
+        studentId: studentId,
+        classId: classId
     });
 };
 
@@ -106,14 +109,16 @@ exports.deleteStudent = async (req: any, res: any, next: any) => {
 
 exports.editUser = async (req: any, res: any, next: any) => {
     console.log('EDIT USER');
-    const userId = req.params.id;
+    const studentId = req.params.id;
+    const classId = req.params.classId;
+
     const updatedFirstname = req.body.first_name;
     const updatedLastname = req.body.last_name;
     const updatedAge = req.body.age;
     const updatedEmail = req.body.email;
 
     try {
-        await User.findByPk(userId)
+        await User.findByPk(studentId)
         .then((user: any) => {
             console.log(user)
             user.firstName = updatedFirstname,
@@ -125,10 +130,10 @@ exports.editUser = async (req: any, res: any, next: any) => {
         })
         .then((result: any) => {
             console.log('UPDATED USER');
-            res.redirect('/users');
+            res.redirect(`/student/${classId}/${studentId}`);
         })
     } catch (err) {
         console.error(err);
-        res.status(500).send(`Error while editing user ${userId} in Controller.`);
+        res.status(500).send(`Error while editing student ${studentId} in Controller.`);
     }
 };
