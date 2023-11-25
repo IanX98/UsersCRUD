@@ -28,7 +28,7 @@ exports.addStudent = (req: any, res: any, next: any) => {
     })
     .catch((err: any) => {
         console.log(err);
-        res.status(500).send(`Error while adding user ${firstName}.`);
+        res.status(500).send(`Error while adding student ${firstName}.`);
     })
 };
 
@@ -66,35 +66,41 @@ exports.getStudents = async (req: any, res: any, next: any) => {
     }
 };
 
-exports.getSelectedUser = async (req: any, res: any, next: any) => {
-    console.log('GET SELECTED USER');
-    const userId = req.params.id;
-    await User.findByPk(userId)
+exports.getSelectedStudent = async (req: any, res: any, next: any) => {
+    console.log('GET SELECTED STUDENT');
+    const studentId = req.params.id;
+    const classId = req.params.classId;
+
+    await User.findByPk(studentId)
     .then((rows: any) => {
-        res.render('selectedUser', {
-            user: rows,
+        res.render('selectedStudent', {
+            student: rows,
+            classId: classId
         });
     })
     .catch((err: any) => {
         console.error(err);
-        res.status(500).send(`Error while getting user ${userId}.`);
+        res.status(500).send(`Error while getting student ${studentId}.`);
     });
 };
 
-exports.deleteUser = async (req: any, res: any, next: any) => {
-    console.log('DELETE USER');
-    const userId = req.params.id;
+exports.deleteStudent = async (req: any, res: any, next: any) => {
+    console.log('DELETE STUDENT');
+    const studentId = req.params.id;
+    const classId = req.params.classId;
+    console.log(classId)
+
     try {
         await User.destroy({
             where: {
-                id: userId
+                id: studentId
             }
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send(`Error while deleting user ${userId} in Controller.`);
+        res.status(500).send(`Error while deleting user ${studentId} in Controller.`);
     } finally {
-        res.redirect('/users');
+        res.redirect(`/students/${classId}`);
     }
 };
 

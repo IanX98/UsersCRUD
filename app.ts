@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // const authRoutes = require('./context/authRouter');
 const classRoutes = require('./context/classRouter');
-const userRoutes = require('./context/userRouter');
+const studentRoutes = require('./context/studentRouter');
 const commentRoutes = require('./context/commentRouter');
 
 app.use(bodyParser.json());
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(authRoutes);
 app.use(classRoutes);
-app.use(userRoutes);
+app.use(studentRoutes);
 app.use(commentRoutes);
 
 app.use(errorController.pageNotFound);

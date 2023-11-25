@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student <%= student.dataValues.id %></title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a class="active" href="/">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Student <%= student.dataValues.id %></h1>
+
+        <ul>
+            <li>Age: <%= student.dataValues.age %></li>
+            <li>First Name: <%= student.dataValues.firstName %></li>
+            <li>Last Name: <%= student.dataValues.lastName %></li>
+            <li>Email: <%= student.dataValues.email %></li>
+        </ul>
+
+        <li><a href="/user-comments/<%= student.dataValues.id %>">See all Comments on Student <%= student.dataValues.id %></a></li>
+
+        <br>
+
+        <form method="GET" action="/create-comment/<%= student.dataValues.id %>">
+            <button type="submit">Comment on this Student</button>
+        </form>
+
+        <br>
+
+        <form method="GET" action="/edit-user/<%= student.dataValues.id %>">
+            <button type="submit">Edit Student</button>
+        </form>
+        <br>
+        <form method="POST" action="/delete-student/<%= classId %>/<%= student.dataValues.id %>">
+            <button type="submit">Delete Student</button>
+        </form>
+    </main>
+</body>
+
+</html>
