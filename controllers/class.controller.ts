@@ -8,7 +8,6 @@ exports.goToHomePage = (req: any, res: any, next: any) => {
 
 exports.addClass = (req: any, res: any, next: any) => {
     console.log('Add CLASS POST');
-    console.log('REQ BODY', req.body)
     const name = req.body.class_name;
     const year = req.body.class_year;
     const institution = req.body.class_institution;
@@ -19,7 +18,6 @@ exports.addClass = (req: any, res: any, next: any) => {
         institution: institution
     })
     .then((result: any) => {
-        console.log(result)
         res.redirect('/classes');
     })
     .catch((err: any) => {
@@ -90,7 +88,6 @@ exports.deleteClass = async (req: any, res: any, next: any) => {
 exports.editClass = async (req: any, res: any, next: any) => {
     console.log('EDIT Class');
     const classId = req.params.id;
-    console.log(req.body)
     const updatedName = req.body.class_name;
     const updatedYear = req.body.class_year;
     const updatedInstitution = req.body.class_institution;
@@ -120,7 +117,7 @@ exports.getClassStudents = async (req: any, res: any, next: any) => {
     console.log(classId)
 
     try {
-        res.redirect(`/users/${classId}`);
+        res.redirect(`/students/${classId}`);
     } catch (error: any) {
         res.status(500).send(`Error while getting class ${classId} students in Controller.`);
     }

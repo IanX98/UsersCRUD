@@ -14,20 +14,20 @@
         <nav class="main-header__nav">
             <ul class="main-header__item-list">
                 <li class="main-header__item"><a class="active" href="/">Home</a></li>
-                <li class="main-header__item"><a href="/add-user">Add Student</a></li>
+                <li class="main-header__item"><a href="/add-student/<%= classInstance.id %>">Add Student</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Persisted Students</h1>
+        <h1>Registered Students of Class <%= classInstance.name %></h1>
 
         <% if (students.length > 0) { %>
             <div class="grid">
                 <% for (let student of students) { %>
                     <article class="card product-item">
                         <div class="card__content">
-                            <h1><a href="/user/<%= student.dataValues.id %>"><p><%= student.dataValues.firstName %>  <%= student.dataValues.lastName %></p></a></h1>
+                            <h1><a href="/student/<%= student.dataValues.id %>"><p><%= student.dataValues.firstName %>  <%= student.dataValues.lastName %></p></a></h1>
                             <br>
                         </div>
                     </article>

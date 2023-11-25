@@ -6,13 +6,15 @@ const path = require('path');
 
 const userController = require('../controllers/user.controller');
 
-router.get('/add-user', userController.goToAddUserPage);
+router.get('/add-student/:id', userController.goToAddStudentPage);
 
-router.post('/add-user', userController.addUser);
+router.post('/add-student/:id', userController.addStudent);
 
-router.get('/users/:id', userController.getUsers);
+router.get('/students/:id', userController.getStudents);
 
-// router.get('/users/:id', userController.getSelectedUser);
+// router.get('/users/:id', userController.getUsers);
+
+router.get('/student/:id', userController.getSelectedUser);
 
 router.post('/delete-user/:id', userController.deleteUser);
 

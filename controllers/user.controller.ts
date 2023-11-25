@@ -7,22 +7,24 @@ exports.goToHomePage = (req: any, res: any, next: any) => {
     res.render('home');
 };
 
-exports.addUser = (req: any, res: any, next: any) => {
-    console.log('Add USER POST');
+exports.addStudent = (req: any, res: any, next: any) => {
+    console.log('Add STUDENT POST');
     const firstName = req.body.first_name;
     const lastName = req.body.last_name;
     const age = req.body.age;
     const email = req.body.email;
+    const classId = req.params.id;
     
     User.create({
         firstName: firstName,
         lastName: lastName,
         age: age,
-        email: email
+        email: email,
+        classId: classId
     })
     .then((result: any) => {
         console.log(result)
-        res.redirect('/users');
+        res.redirect(`/students/${classId}`);
     })
     .catch((err: any) => {
         console.log(err);
@@ -30,9 +32,12 @@ exports.addUser = (req: any, res: any, next: any) => {
     })
 };
 
-exports.goToAddUserPage = (req: any, res: any, next: any) => {
-    console.log('Add user GET');
-    res.render('add-user');
+exports.goToAddStudentPage = (req: any, res: any, next: any) => {
+    console.log('Add Student GET');
+    const classId = req.params.id;
+    res.render('add-student', {
+        classId: classId
+    });
 };
 
 exports.goToEditUserPage = (req: any, res: any, next: any) => {
@@ -43,21 +48,22 @@ exports.goToEditUserPage = (req: any, res: any, next: any) => {
     });
 };
 
-exports.getUsers = async (req: any, res: any, next: any) => {
-    console.log('GET USERS');
+exports.getStudents = async (req: any, res: any, next: any) => {
+    console.log('GET STUDENTS');
     const classId = req.params.id;
 
-    await Class.findByPk(classId)
-    .then((rows: any) => {
-        console.log(rows)
-        res.render('users', {
-            students: rows,
+    try {
+        const classInstance = await Class.findByPk(classId);
+
+        const students = await User.findAll({
+            where: { classId: classId },
         });
-    })
-    .catch((err: any) => {
+        
+        res.render('students', { students, classInstance });
+    } catch (err: any) {
         console.error(err);
         res.status(500).send(`Error while getting class ${classId}.`);
-    });
+    }
 };
 
 exports.getSelectedUser = async (req: any, res: any, next: any) => {
