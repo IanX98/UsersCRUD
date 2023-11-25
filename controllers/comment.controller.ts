@@ -31,7 +31,7 @@ exports.addComment = (req: any, res: any, next: any) => {
     })
 };
 
-exports.getUserComments = async (req: any, res: any, next: any) => {
+exports.getStudentComments = async (req: any, res: any, next: any) => {
     console.log('GET USER COMMENTS');
     const userId = req.params.id;
 

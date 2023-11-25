@@ -107,8 +107,8 @@ exports.deleteStudent = async (req: any, res: any, next: any) => {
     }
 };
 
-exports.editUser = async (req: any, res: any, next: any) => {
-    console.log('EDIT USER');
+exports.editStudent = async (req: any, res: any, next: any) => {
+    console.log('EDIT STUDENT');
     const studentId = req.params.id;
     const classId = req.params.classId;
 

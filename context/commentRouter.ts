@@ -10,7 +10,7 @@ router.get('/create-comment/:classId/:id', commentController.goToCreateComment);
 
 router.post('/create-comment/:classId/:id', commentController.addComment);
 
-router.get('/user-comments/:id', commentController.getUserComments);
+router.get('/student-comments/:id', commentController.getStudentComments);
 
 router.get('/edit-comment/:id/:commentId', commentController.goToEditCommentPage);
 

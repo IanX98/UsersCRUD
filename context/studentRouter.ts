@@ -18,6 +18,6 @@ router.post('/delete-student/:classId/:id', studentController.deleteStudent);
 
 router.get('/edit-student/:classId/:id', studentController.goToEditStudentPage);
 
-router.post('/edit-student/:classId/:id', studentController.editUser);
+router.post('/edit-student/:classId/:id', studentController.editStudent);
 
 module.exports = router
