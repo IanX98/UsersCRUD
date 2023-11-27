@@ -1,9 +1,9 @@
-const { Pool, Client } = require('pg');
+const { Client } = require('pg');
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('user_pgdb', 'postgres', 'postgres', {
+const sequelize = new Sequelize('user_pgdb', 'postgres', 'simpsons1', {
     dialect: 'postgres',
-    host: 'localhost'
+    host: 'db'
 });
 
 module.exports = sequelize;

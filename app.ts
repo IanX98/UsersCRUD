@@ -10,7 +10,6 @@ const mongoConnect = require('./db/mongoDB').mongoConnect;
 const User = require('./models/user');
 const Class = require('./models/class');
 
-
 const app = express();
 
 app.set('view engine', 'ejs');
